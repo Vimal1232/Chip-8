@@ -19,6 +19,8 @@ class chip8 {
       0xf0, 0x80, 0xf0, 0xf0, 0x80, 0xf0, 0x80, 0x80,
     ];
 
+    this.setuptimer();
+
     this.fontsetLoad();
     this.mode = "cosmac";
     this.keymap = {
@@ -57,6 +59,17 @@ class chip8 {
     const opcode = (this.memory[this.pc] << 8) | this.memory[this.pc + 1];
     this.pc += 2;
     return opcode;
+  }
+
+  setuptimer() {
+    setInterval(() => {
+      if (this.delayTimer > 0) {
+        this.delayTimer--;
+      }
+      if (this.soundTimer > 0) {
+        this.soundTimer--;
+      }
+    }, 16);
   }
 
   decode(opcode) {
@@ -315,7 +328,7 @@ class chip8 {
   start() {
     setInterval(() => {
       this.cycle();
-    }, 1);
+    }, 5);
   }
 }
 
@@ -334,14 +347,35 @@ window.addEventListener("keyup", (e) => {
   if (key !== null) Emu.keypad[key] = 0;
 });
 
-const file = fetch("/octo.ch8")
-  .then((response) => response.arrayBuffer())
-  .then((data) => {
-    const rom = new Uint8Array(data);
-    Emu.loadrom(rom);
-    Emu.start();
-    draw();
-  });
+const tetris = document.getElementById("tetris");
+const Russian = document.getElementById("russian");
+const Space = document.getElementById("Space");
+const Octo = document.getElementById("octo");
+
+tetris.addEventListener("click", (e) => {
+  Load("/Tetris.ch8");
+});
+
+Russian.addEventListener("click", (e) => {
+  Load("/Slope.ch8");
+});
+Space.addEventListener("click", (e) => {
+  Load("/flight.ch8");
+});
+Octo.addEventListener("click", (e) => {
+  Load("/octo.ch8");
+});
+
+function Load(Game = "/IBM2.ch8") {
+  const file = fetch(Game)
+    .then((response) => response.arrayBuffer())
+    .then((data) => {
+      const rom = new Uint8Array(data);
+      Emu.loadrom(rom);
+      Emu.start();
+      draw();
+    });
+}
 
 function draw() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);

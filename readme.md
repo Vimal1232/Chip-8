@@ -12,3 +12,10 @@ This is A Chip - 8 Emulator using Javascript
 - WASD for navigation
 - Z for selecting an option
 - X for canceling or going back
+
+## Games
+
+- Tetris
+- FlightRunner
+- SlipperySlope
+- Octo
