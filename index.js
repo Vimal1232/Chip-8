@@ -353,17 +353,17 @@ const Space = document.getElementById("Space");
 const Octo = document.getElementById("octo");
 
 tetris.addEventListener("click", (e) => {
-  Load("Tetris.ch8");
+  Load("./Tetris.ch8");
 });
 
 Russian.addEventListener("click", (e) => {
-  Load("Slope.ch8");
+  Load("./Slope.ch8");
 });
 Space.addEventListener("click", (e) => {
-  Load("flight.ch8");
+  Load("./flight.ch8");
 });
 Octo.addEventListener("click", (e) => {
-  Load("octo.ch8");
+  Load("./octo.ch8");
 });
 
 function Load(Game = "IBM2.ch8") {
