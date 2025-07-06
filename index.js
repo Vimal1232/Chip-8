@@ -328,7 +328,7 @@ class chip8 {
   start() {
     setInterval(() => {
       this.cycle();
-    }, 5);
+    }, 0);
   }
 }
 
@@ -348,22 +348,19 @@ window.addEventListener("keyup", (e) => {
 });
 
 const tetris = document.getElementById("tetris");
-const Russian = document.getElementById("russian");
-const Space = document.getElementById("Space");
-const Octo = document.getElementById("octo");
+const Pong = document.getElementById("pong");
+const Brix = document.getElementById("brix");
 
 tetris.addEventListener("click", (e) => {
   Load("./Tetris.ch8");
 });
 
-Russian.addEventListener("click", (e) => {
-  Load("./Slope.ch8");
+Pong.addEventListener("click", (e) => {
+  Load("./PONG(1P).ch8");
 });
-Space.addEventListener("click", (e) => {
-  Load("./flight.ch8");
-});
-Octo.addEventListener("click", (e) => {
-  Load("./octo.ch8");
+
+Brix.addEventListener("click", (e) => {
+  Load("./Brix.ch8");
 });
 
 function Load(Game = "IBM2.ch8") {
@@ -384,10 +381,10 @@ function draw() {
       const index = x + y * 64;
       const pixel = Emu.display[index];
       if (pixel) {
-        ctx.fillStyle = "Green";
+        ctx.fillStyle = "#FFBF00";
         ctx.fillRect(x * 10, y * 10, 10, 10);
       } else {
-        ctx.fillStyle = "black";
+        ctx.fillStyle = "#000";
         ctx.fillRect(x * 10, y * 10, 10, 10);
       }
     }
