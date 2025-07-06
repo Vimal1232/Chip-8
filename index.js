@@ -360,7 +360,7 @@ Pong.addEventListener("click", (e) => {
 });
 
 Brix.addEventListener("click", (e) => {
-  Load("./Brix.ch8");
+  Load("./BRIX.ch8");
 });
 
 function Load(Game = "IBM2.ch8") {
